@@ -1,7 +1,7 @@
 // Import a library of functionality to use in this project
 import java.util.Scanner;
 
-//  This program prints all of the prime numbers that are 
+// This program prints all of the prime numbers that are 
 // strictly between two numbers.
 
 // Java programs are organized into units called “classes”. 
@@ -16,16 +16,15 @@ public class Main {
     // Public: It is an access modifier, which specifies from 
     // where and who can access the method. 
     // Making the main() method public makes it available 
-    // outside of the Project2 class
+    // outside of the Main class
 
     // Static: It is a keyword that means this method (the 'main' method) 
-    // can be called without creating
-    // an instance of the Project2 class
+    // can be called without creating an instance of the Main class
 
     // Void: It is a keyword and used to specify that
     // a method doesn’t return anything
     // We will see below a method that returns a value as a result
-    public static void main(final String args[]) {
+    public static void main(String[] args) {
         // Prompt the user to enter two integers. We assume that
         // the value being entered is an integer but we do not
         // assume that it is greater than or equal to 0. If 
@@ -48,7 +47,7 @@ public class Main {
         // tells the Scanner it will read input from a command line.
         // We could tell Scanner that we will read in a
         // File... new Scanner(File)
-        final Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         // This is how Java does a while loop
         while (first < 0) { // While we do not have a positive number
@@ -71,7 +70,7 @@ public class Main {
     }
 
     public static void printPrime(int first, int second) {
-        // This function accepts two numbers as arguments and
+        // This function accepts two integers as arguments and
         // prints out all of the prime numbers strictly between those two 
         // numbers (i.e. not including those two numbers).
         // Each prime number in the output is separated by a space.
@@ -79,7 +78,7 @@ public class Main {
         // Check to see if the numbers given by the user are in
         // descending order and, if so, reverse the order
         if (second < first) {
-            // The first number is lower than the second number
+            // The first number is larger than the second number
             // Reverse their order
             int tempNum = first; // Hold larger number in a temp variable
             first = second; // Make the smaller number the first number
@@ -88,20 +87,22 @@ public class Main {
 
         // To hold the string to print at the end
         String primes = new String(""); 
+        int primTotal = 0;
 
         // Loop through all the numbers between (but not including) 
-        // the user's two numbers
+        // the user's two numbers.
         // Start at first+1 because we only want prime numbers 
         // between, but not including the first and second numbers. 
         // Continue to loop as long as i is less than (but not equal to)
-        //  the second number. i++ means to increment i by 1 each loop
-        for (int i = first + 1; i < second; i++) {
+        // the second number. i++ means to increment i by 1 each loop
+        for (int i = first; i <= second; i++) {
             // Make sure that i is greater than 1 since 2 is the first 
             // prime number
             if (i > 1) { 
-                if (isPrime(i)) { // Pass the number to the isPrimes method
+                if (isPrime(i)) { // Pass the number to the isPrime method
                     // This is a prime number, append it to the results
                     primes += i + " ";
+                    primTotal = primTotal + i;
                 }
             }
         }
@@ -115,13 +116,14 @@ public class Main {
 
         // Print out the results
         System.out.println(primes);
+        System.out.println(primTotal);
     }
 
     // The method is private, meaning it can only be used by
     // code inside this class
     // It has a return value of BOOLEAN - which is either TRUE or FALSE
     // Booleans are related to binary programming FALSE = 0, TRUE = 1
-    private static boolean isPrime(final int value) {
+    private static boolean isPrime(int value) {
         // This function checks if a number is a prime number. 
         // It returns true if the number is a prime and false otherwise.
         // We will assume that the number is a prime to begin.
